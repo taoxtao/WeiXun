@@ -5,7 +5,16 @@
 
 //define your token
 define("TOKEN", "taoxtao");
+define("appID", "wx042fd3bec37330dd");
+define("appsecret", "70c5026694abccd5c1e3c61ca33c4206");
+require_once "./class_wxjsjdk.php";
+
+
+
+
 $wechatObj = new wechatCallbackapiTest();
+
+
 //$wechatObj->valid();
 
 class wechatCallbackapiTest
@@ -25,8 +34,15 @@ class wechatCallbackapiTest
     {
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-
-      	//extract post data
+                 
+                
+                
+                //实例化微信access_token   
+                $jssdk = new JSSDK(appID, appsecret);
+                $signPackage = $jssdk->GetSignPackage();
+                
+                
+                //extract post data
 		if (!empty($postStr)){
                 /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
                    the best way is to check the validity of xml by yourself */
